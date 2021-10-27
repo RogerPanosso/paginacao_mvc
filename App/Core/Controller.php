@@ -14,18 +14,18 @@
 
 		public function loadTemplate(string $nomeView, array $dados = array()) {
 			$this->dados = $dados;
-			require_once __DIR__."/../App/Config/Config.php";
-			require __DIR__."/../App/Views/Parcial/template.php";
+			require_once "/../App/Config/Config.php";
+			require "/../App/Views/Parcial/template.php";
 		}
 
 		public function loadViewInTemplate(string $nomeView, array $dados = array()) {
 			extract($this->dados);
-			require __DIR__."/../App/Views/Pages/".$nomeView.".php";
+			require "/../App/Views/Pages/".$nomeView.".php";
 		}
 
 		public function loadView(string $nomeView, array $dados = array()) {
 			extract($dados);
-			require __DIR__."/../App/Views/Pages/".$nomeView.".php";
+			require "../App/Views/Pages/".$nomeView.".php";
 		}
 	}
 ?>
