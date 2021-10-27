@@ -39,10 +39,6 @@
 				$params = array();
 			endif;
 
-			echo "Controller Requisitado: ".$controller."<br>\n";
-			echo "Método(action) Requisitado: ".$method."<br>\n";
-			echo "Parametros Requisitado: ".print_r($params, true);
-
 			//define estrutura de namespaces(dirs) para controllers de acessos
 			$controller = "App\\Controllers\\".$controller;
 
