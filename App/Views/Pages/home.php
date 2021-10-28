@@ -5,10 +5,16 @@
 				<div class="page-header">
 					<h3>Cadastrar Usuário.</h3>
 				</div>
+				<div id="resultCadastro">
+					<!--html retornado diante requisição-->
+				</div>
 				<div class="card my-4">
 					<div class="card-header d-flex justify-content-between">
 						<span class="text-dark d-flex align-self-center">Formulário de Cadastro de Usuário</span>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Informacoes">Informações</button>
+						<div class="btn-group">
+							<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#Informacoes">Informações</button>
+							<a class="btn btn-primary" href="<?=BASE_URL;?>usuarios">Visualizar Usuários</a>
+						</div>
 					</div>
 					<div class="card-body">
 						<div class="card-text">
@@ -43,8 +49,8 @@
 		</div>
 	</div>
 </section>
-<!-- Modal Informações -->
-<div class="modal fade" id="Informacoes" tabindex="-1" role="dialog" aria-labelledby="MyModal" aria-controls="false">
+<!-- Modal informações -->
+<div class="modal fade" id="Informacoes" tabindex="-1" role="dialog" aria-labelledby="MyModal" aria-expanded="false">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -52,25 +58,10 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<span class="mb-0">Preencha os campos abaixo corretamente perante o formulário de cadastro, realizando seu cadastro como usuário(a). OBS: Caso não seja definida uma senha específica diante seu cadastro por padrão será assumida sua data de nascimento como senha padrão.</span>
-				<hr>
-				<div class="accordion" id="accordionInfo">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="headingOne">
-							<button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#CollapseOne">
-								Visualizar um exemplo ?
-							</button>
-						</h2>
-						<div class="accordion-collapse collapse" id="CollapseOne" aria-labelledby="headingOne" aria data-bs-parent="#accordionInfo">
-							<div class="accordion-body">
-								teste
-							</div>
-						</div>
-					</div>
-				</div>
+				Preencha os campos abaixo corretamente realizando o cadastro de usuário(a) perante o formulário. Obs: Caso não seja definida uma senha específica diante o cadastro, por padrão será assumida a data de nascimento cadastrada.
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Fechar</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 			</div>
 		</div>
 	</div>

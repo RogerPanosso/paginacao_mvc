@@ -2,3 +2,9 @@ body {
 	margin: 0!important;
 	padding: 0!important;
 }
+form label {
+	font-size: 16px!important;
+	font-style: unset!important;
+	font-weight: 387!important;
+	color: #353535!important;
+}
