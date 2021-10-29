@@ -34,5 +34,22 @@
 				return true;
 			endif;
 		}
+
+		public function getUsuarios($offset, $limit) {
+			$array = array();
+			$query = "SELECT * FROM usuarios ORDER BY id LIMIT $offset,$limit";
+			$query = $this->pdo->query($query);
+			if($query->rowCount() > 0):
+				$array = $query->fetchAll(\PDO::FETCH_ASSOC);
+			endif;
+			return $array;
+		}
+
+		public function getCount() {
+			$query = "SELECT COUNT(*) AS total FROM usuarios";
+			$query = $this->pdo->query($query);
+			$query = $query->fetch(\PDO::FETCH_ASSOC);
+			return $query["total"];
+		}
 	}
 ?>
