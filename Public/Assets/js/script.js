@@ -8,20 +8,11 @@ $(document).ready(function(){
 		let email = $("#email").val();
 		let senha = $("#senha").val();
 		let data_nascimento = $("#data_nascimento").val();
-		if(nome == "" || nome.length <= 2) {
-			window.alert("Por favor informe um nome valido");
-			return false;
-		}
-		if(sobrenome == "") {
-			window.alert("Por favor informe um sobrenome valido");
-			return false;
-		}
-		if(email == "" || email.indexOf("@") == -1) {
-			window.alert("Por favor informe um e-mail valido");
-			return false;
-		}
-		if(data_nascimento == "") {
-			window.alert("Por favor informe uma data de nascimento valida");
+		if(nome == "" || sobrenome == "" || email == "" || senha == "" || data_nascimento == "") {
+			$("#resultCadastro").fadeIn().html("<span class='text-danger'>Preencha todos os campos por favor!</span>");
+			setTimeout(function(){
+				$("#resultCadastro").fadeOut();
+			}, 4000);
 			return false;
 		}
 		//realiza requisição interna ajax
@@ -37,8 +28,10 @@ $(document).ready(function(){
 				data_nascimento:data_nascimento
 			},
 			success:function(data) {
-				$("#resultCadastro").html(data);
-				$("#resultCadastro").css("transition", ".1s");
+				$("#resultCadastro").fadeIn().html(data);
+				setTimeout(function(){
+					$("#resultCadastro").fadeOut();
+				}, 4000);
 			},
 			error:function(response) {
 				window.alert(response);
@@ -46,5 +39,28 @@ $(document).ready(function(){
 				return false;
 			}
 		});
+	});
+});
+
+//seleciona no documento(página) class específica perante elemento HTML responsavel por editar
+$(document).ready(function(){
+	$(document).on("click", ".editar", function(){
+		let id = $(this).data("id");
+		if(id != "") {
+			$.ajax({
+				type:"POST",
+				url:BASE_URL+"usuarios/editarUsuario/"+id,
+				dataType:"html",
+				data:{id:id},
+				success:function(data) {
+					$("#resultEditar").html(data);
+				},
+				error:function(response) {
+					window.alert(response);
+					window.location.reload();
+					return false;
+				}
+			});
+		}
 	});
 });

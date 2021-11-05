@@ -37,7 +37,7 @@
 
 		public function getUsuarios($offset, $limit) {
 			$array = array();
-			$query = "SELECT * FROM usuarios ORDER BY id LIMIT $offset,$limit";
+			$query = "SELECT * FROM usuarios ORDER BY id ASC LIMIT $offset,$limit";
 			$query = $this->pdo->query($query);
 			if($query->rowCount() > 0):
 				$array = $query->fetchAll(\PDO::FETCH_ASSOC);
@@ -50,6 +50,18 @@
 			$query = $this->pdo->query($query);
 			$query = $query->fetch(\PDO::FETCH_ASSOC);
 			return $query["total"];
+		}
+
+		public function getUsuario($id) {
+			$array = array();
+			$query = "SELECT * FROM usuarios WHERE id = :id";
+			$query = $this->pdo->prepare($query);
+			$query->bindValue(":id", $id);
+			$query->execute();
+			if($query->rowCount() > 0):
+				$array = $query->fetch(\PDO::FETCH_ASSOC);
+			endif;
+			return $array;
 		}
 	}
 ?>

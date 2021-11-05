@@ -18,26 +18,36 @@
 			$dados = array();
 			$usuarios = new Usuarios();
 
-			//define limit de registros que serão obtidos por página
+			//define limit contendo valor específico assumindo quantidade de registros por páginas
 			$limit = 10;
 
-			//obtem total de registros perante table(usuarios) calculando total de páginas para páginação
+			//calcula total exato de páginas para páginação de acordo com total de dados perante table(usuarios) e limit
 			$total = $usuarios->getCount();
 			$dados["total_paginas"] = ceil($total / $limit);
 
-			//define offset padrão a ser iniciado como 1(id)
+			//de posse do total de páginas define offset padrão sendo 1(página 1)
 			$dados["pagina_atual"] = 1;
 
-			//recebe via get(url) valor de página atual selecionada
+			//realiza verificação obtendo valor atual da página selecionada via get(URL)
 			if(isset($_GET["p"]) and !empty($_GET["p"])):
 				$dados["pagina_atual"] = intval($_GET["p"]);
 			endif;
 
-			//com base em valor da página obtido calcula novo offset
+			//de posse do valor da página atual selecionada calcula novo offset para iniciar registros
 			$offset = ($dados["pagina_atual"] * $limit) - $limit;
 
+			//realiza chamada do Model(Usuarios) obtendo consulta retornando registros com limitação definida
 			$dados["usuarios"] = $usuarios->getUsuarios($offset, $limit);
+
+			//realiza chamada da estrutura de template diante sua view com dados obtidos
 			$this->loadTemplate("usuarios", $dados);
+		}
+
+		public function editarUsuario($id) {
+			$dados = array();
+			$usuarios = new Usuarios();
+			$dados["usuario"] = $usuarios->getUsuario($id);
+			$this->loadTemplate("editar_usuario", $dados);
 		}
 	}
 ?>
